@@ -1,0 +1,551 @@
+import type { MachineKind } from '@/db/machines';
+
+export type SeedMachine = {
+  /** Stable id, also used to find the bundled photo. Never change once released. */
+  key: string;
+  name: string;
+  kind: MachineKind;
+  muscles: string;
+  /** Max 5 tips. */
+  tips: string[];
+};
+
+/**
+ * Base catalog loaded on first launch.
+ *
+ * Machines: the selectorized "Next" line that Movement developed together with
+ * Smart Fit (Abdominal, Abductor, Adductor, Back Extension, Biceps, Calf Extension,
+ * Chest Press, Glute, Leg Curl, Leg Extension, Pec Fly/Rear Delt, Pulldown, Row,
+ * Seated Leg Curl, Seated Leg Press, Shoulder Press, Triceps Press) plus three
+ * stations common in Smart Fit gyms (cable crossover, Smith machine, 45° leg press).
+ * Free exercises: common movements with the dumbbells, barbells, benches and
+ * bodyweight areas of the gym.
+ */
+export const SEED_MACHINES: SeedMachine[] = [
+  // ───────────── Máquinas ─────────────
+  {
+    key: 'abdominal_maquina',
+    name: 'Abdominal (máquina)',
+    kind: 'machine',
+    muscles: 'Recto abdominal (principal) y oblicuos.',
+    tips: [
+      'Ajusta el asiento para que el eje de giro quede a la altura de tu abdomen.',
+      'Encoge el tronco "enrollando" la columna; no jales con los brazos.',
+      'Exhala al contraer y mantén 1 segundo abajo.',
+      'Regresa lento sin dejar que las placas choquen.',
+      'Usa un peso que te permita 12–20 repeticiones controladas.',
+    ],
+  },
+  {
+    key: 'abductor',
+    name: 'Abductor',
+    kind: 'machine',
+    muscles: 'Glúteo medio, glúteo menor y tensor de la fascia lata (parte externa de la cadera).',
+    tips: [
+      'Coloca las almohadillas por fuera de las rodillas y la espalda pegada al respaldo.',
+      'Abre las piernas de forma controlada y sostén 1 segundo afuera.',
+      'Inclinar el torso un poco al frente enfatiza más el glúteo.',
+      'No rebotes al cerrar; controla el regreso.',
+      'Evita pesos que te obliguen a despegar la cadera del asiento.',
+    ],
+  },
+  {
+    key: 'aductor',
+    name: 'Aductor',
+    kind: 'machine',
+    muscles: 'Aductores (aductor mayor, largo y corto), pectíneo y grácil (parte interna del muslo).',
+    tips: [
+      'Empieza con una apertura cómoda; no fuerces el estiramiento inicial.',
+      'Cierra las piernas apretando el interior del muslo, sin impulso.',
+      'Mantén la espalda apoyada y la cadera quieta.',
+      'Regresa lento: la fase de apertura también trabaja.',
+      'Si sientes molestia en la ingle, reduce el rango y el peso.',
+    ],
+  },
+  {
+    key: 'extension_espalda',
+    name: 'Extensión de espalda (máquina)',
+    kind: 'machine',
+    muscles: 'Erectores de la columna (lumbares); apoyo de glúteos e isquiotibiales.',
+    tips: [
+      'Ajusta el rodillo a la altura de los omóplatos y los pies bien apoyados.',
+      'Extiende el tronco de forma lenta y controlada.',
+      'No hiperextiendas: detente cuando la espalda esté recta.',
+      'Mantén el cuello neutro, mirando al frente.',
+      'Usa poco peso; aquí importa más el control que la carga.',
+    ],
+  },
+  {
+    key: 'biceps_maquina',
+    name: 'Bíceps (máquina)',
+    kind: 'machine',
+    muscles: 'Bíceps braquial, braquial y braquiorradial.',
+    tips: [
+      'Ajusta el asiento para que los codos queden alineados con el eje de la máquina.',
+      'Mantén los codos y la parte trasera del brazo pegados al apoyo.',
+      'Sube contrayendo el bíceps sin despegar la espalda.',
+      'Baja lento hasta casi extender el brazo, sin bloquear el codo.',
+      'Las manijas independientes ayudan a corregir diferencias entre brazos.',
+    ],
+  },
+  {
+    key: 'pantorrilla',
+    name: 'Pantorrilla (extensión de talones)',
+    kind: 'machine',
+    muscles: 'Gastrocnemio (gemelos) y sóleo.',
+    tips: [
+      'Apoya solo la parte delantera del pie en la plataforma.',
+      'Baja el talón hasta sentir el estiramiento y luego sube al máximo.',
+      'Sostén 1–2 segundos arriba para una contracción completa.',
+      'No rebotes abajo: el tendón de Aquiles agradece el control.',
+      'Las pantorrillas responden bien a series de 12–20 repeticiones.',
+    ],
+  },
+  {
+    key: 'press_pecho',
+    name: 'Press de pecho (máquina)',
+    kind: 'machine',
+    muscles: 'Pectoral mayor (principal), deltoides anterior y tríceps.',
+    tips: [
+      'Ajusta el asiento para que las manijas queden a la altura del pecho medio.',
+      'Junta los omóplatos y mantén la espalda pegada al respaldo.',
+      'Empuja sin bloquear por completo los codos al final.',
+      'Regresa lento hasta sentir el estiramiento del pecho.',
+      'Mantén las muñecas rectas, alineadas con el antebrazo.',
+    ],
+  },
+  {
+    key: 'gluteo_maquina',
+    name: 'Glúteo (patada en máquina)',
+    kind: 'machine',
+    muscles: 'Glúteo mayor (principal) e isquiotibiales.',
+    tips: [
+      'Apoya los antebrazos y mantén el abdomen firme.',
+      'Empuja con el talón llevando la pierna hacia atrás.',
+      'No arquees la zona lumbar al final del movimiento.',
+      'Aprieta el glúteo 1 segundo en la extensión máxima.',
+      'Trabaja una pierna a la vez con el mismo número de repeticiones.',
+    ],
+  },
+  {
+    key: 'curl_femoral_acostado',
+    name: 'Curl femoral acostado',
+    kind: 'machine',
+    muscles: 'Isquiotibiales (bíceps femoral, semitendinoso, semimembranoso); apoyo de gemelos.',
+    tips: [
+      'El rodillo va justo arriba del tobillo, no sobre la pantorrilla.',
+      'Las rodillas quedan un poco fuera del borde del banco.',
+      'Mantén la cadera pegada al banco; no la levantes al subir.',
+      'Sube de forma controlada y baja lento (2–3 segundos).',
+      'Sujétate de las manijas para estabilizar el cuerpo.',
+    ],
+  },
+  {
+    key: 'extension_cuadriceps',
+    name: 'Extensión de cuádriceps',
+    kind: 'machine',
+    muscles: 'Cuádriceps (recto femoral, vastos lateral, medial e intermedio).',
+    tips: [
+      'Alinea la rodilla con el eje de giro de la máquina.',
+      'El rodillo va sobre el tobillo, al frente de la espinilla.',
+      'Extiende hasta casi bloquear y sostén 1 segundo arriba.',
+      'Baja lento; no dejes caer el peso.',
+      'Sujeta las manijas para mantener la cadera en el asiento.',
+    ],
+  },
+  {
+    key: 'pec_fly',
+    name: 'Pec Fly / Deltoides posterior',
+    kind: 'machine',
+    muscles:
+      'Modo aperturas: pectoral mayor y deltoides anterior. Modo inverso (de frente al respaldo): deltoides posterior, romboides y trapecio medio.',
+    tips: [
+      'Ajusta la posición de los brazos según el modo: pecho o deltoides posterior.',
+      'Mantén los codos ligeramente flexionados y fijos durante todo el movimiento.',
+      'En pecho, junta las manos al frente apretando el pectoral.',
+      'En deltoides posterior, abre los brazos sin encoger los hombros.',
+      'Controla el regreso; no dejes que el peso jale tus brazos hacia atrás.',
+    ],
+  },
+  {
+    key: 'jalon_pecho',
+    name: 'Jalón al pecho (Pulldown)',
+    kind: 'machine',
+    muscles: 'Dorsal ancho (principal), redondo mayor, romboides, bíceps y deltoides posterior.',
+    tips: [
+      'Ajusta el apoyo de rodillas para que no te levante el peso.',
+      'Lleva los codos hacia abajo y atrás, como metiéndolos en los bolsillos.',
+      'Saca el pecho y baja los hombros antes de jalar.',
+      'No balancees el torso para ayudarte.',
+      'Sube controlando hasta estirar completamente los brazos.',
+    ],
+  },
+  {
+    key: 'remo_sentado',
+    name: 'Remo sentado (máquina)',
+    kind: 'machine',
+    muscles: 'Dorsal ancho, romboides, trapecio medio, deltoides posterior y bíceps.',
+    tips: [
+      'Ajusta asiento y apoyo de pecho para que las manijas queden a la altura del pecho.',
+      'Mantén el pecho pegado al apoyo y la espalda recta.',
+      'Jala llevando los codos atrás y juntando los omóplatos.',
+      'Evita encoger los hombros hacia las orejas.',
+      'Regresa lento hasta sentir el estiramiento de la espalda.',
+    ],
+  },
+  {
+    key: 'curl_femoral_sentado',
+    name: 'Curl femoral sentado',
+    kind: 'machine',
+    muscles: 'Isquiotibiales (bíceps femoral, semitendinoso, semimembranoso).',
+    tips: [
+      'Alinea la rodilla con el eje de giro y ajusta el respaldo.',
+      'Baja el rodillo superior hasta que sujete firme los muslos.',
+      'Lleva los talones hacia abajo y atrás de forma controlada.',
+      'Mantén la espalda apoyada; no te impulses con el torso.',
+      'Regresa lento sin que el peso toque arriba.',
+    ],
+  },
+  {
+    key: 'prensa_sentado',
+    name: 'Prensa de piernas sentado',
+    kind: 'machine',
+    muscles: 'Cuádriceps, glúteo mayor, isquiotibiales y aductores.',
+    tips: [
+      'Coloca los pies al ancho de la cadera en el centro de la plataforma.',
+      'Las rodillas siguen la dirección de las puntas de los pies.',
+      'Mantén la zona lumbar pegada al respaldo en todo momento.',
+      'No bloquees las rodillas al extender.',
+      'Pies más arriba = más glúteo; pies más abajo = más cuádriceps.',
+    ],
+  },
+  {
+    key: 'press_hombro',
+    name: 'Press de hombro (máquina)',
+    kind: 'machine',
+    muscles: 'Deltoides (anterior y medio), tríceps y trapecio superior.',
+    tips: [
+      'Ajusta el asiento para que las manijas queden a la altura de los hombros.',
+      'Mantén la espalda pegada al respaldo y el abdomen firme.',
+      'Empuja hacia arriba sin bloquear los codos.',
+      'Baja controlando hasta la altura de las orejas.',
+      'No arquees la espalda para levantar más peso.',
+    ],
+  },
+  {
+    key: 'triceps_maquina',
+    name: 'Tríceps (fondos en máquina)',
+    kind: 'machine',
+    muscles: 'Tríceps braquial (principal); apoyo de pectoral inferior y deltoides anterior.',
+    tips: [
+      'Ajusta el asiento para que las manijas queden a los lados del torso.',
+      'Mantén los codos cerca del cuerpo, apuntando hacia atrás.',
+      'Empuja hacia abajo hasta extender los brazos.',
+      'Mantén el torso erguido para enfocar el tríceps.',
+      'Sube lento sin que los hombros se vayan al frente.',
+    ],
+  },
+  {
+    key: 'poleas_crossover',
+    name: 'Poleas / Crossover',
+    kind: 'machine',
+    muscles:
+      'Estación versátil: pectoral (cruces), tríceps (jalones), bíceps (curl), hombros y espalda según el agarre y la altura de la polea.',
+    tips: [
+      'Ajusta la altura de la polea según el ejercicio que vayas a hacer.',
+      'Da un paso al frente para que el peso no toque abajo al inicio.',
+      'Mantén una postura estable: un pie adelante o ambos firmes.',
+      'Controla el regreso; la tensión del cable es constante.',
+      'Revisa que el pasador y el accesorio estén bien asegurados.',
+    ],
+  },
+  {
+    key: 'smith',
+    name: 'Máquina Smith',
+    kind: 'machine',
+    muscles:
+      'Depende del ejercicio: sentadilla (piernas y glúteo), press de banca (pecho), press militar (hombro), remo (espalda).',
+    tips: [
+      'Ajusta los topes de seguridad un poco por debajo de tu rango de movimiento.',
+      'Libera y asegura la barra girándola con las muñecas.',
+      'La barra sigue un riel fijo: acomoda tu cuerpo, no al revés.',
+      'Para sentadilla, pon los pies un poco adelante de la barra.',
+      'Recuerda sumar el peso de la barra al registrar tu carga.',
+    ],
+  },
+  {
+    key: 'prensa_45',
+    name: 'Prensa 45°',
+    kind: 'machine',
+    muscles: 'Cuádriceps, glúteo mayor, isquiotibiales y aductores.',
+    tips: [
+      'Coloca los pies al ancho de la cadera en el centro de la plataforma.',
+      'Libera los seguros solo cuando ya estés en posición.',
+      'Baja hasta unos 90° sin que la cadera se despegue del respaldo.',
+      'No bloquees las rodillas al empujar.',
+      'Vuelve a poner los seguros antes de levantarte.',
+    ],
+  },
+
+  // ───────────── Ejercicios libres ─────────────
+  {
+    key: 'press_banca',
+    name: 'Press de banca con barra',
+    kind: 'free',
+    muscles: 'Pectoral mayor (principal), deltoides anterior y tríceps.',
+    tips: [
+      'Junta los omóplatos y mantén los pies firmes en el suelo.',
+      'Agarra la barra un poco más ancho que los hombros.',
+      'Baja la barra a la parte media del pecho con los codos a ~45°.',
+      'Empuja en línea recta sin rebotar en el pecho.',
+      'Con peso alto, pide a alguien que te asista.',
+    ],
+  },
+  {
+    key: 'press_inclinado_mancuernas',
+    name: 'Press inclinado con mancuernas',
+    kind: 'free',
+    muscles: 'Pectoral mayor (porción superior/clavicular), deltoides anterior y tríceps.',
+    tips: [
+      'Inclina el banco entre 30° y 45°.',
+      'Sube las mancuernas apoyándolas en los muslos antes de recostarte.',
+      'Baja hasta sentir el estiramiento del pecho con los codos a ~45°.',
+      'Empuja juntando ligeramente las mancuernas arriba, sin chocarlas.',
+      'Mantén las muñecas rectas sobre los codos.',
+    ],
+  },
+  {
+    key: 'sentadilla',
+    name: 'Sentadilla con barra',
+    kind: 'free',
+    muscles: 'Cuádriceps, glúteo mayor, aductores, isquiotibiales y erectores de la columna.',
+    tips: [
+      'Coloca la barra sobre los trapecios, no sobre el cuello.',
+      'Pies al ancho de hombros con las puntas ligeramente hacia afuera.',
+      'Baja con el pecho arriba y las rodillas siguiendo la línea de los pies.',
+      'Mantén los talones apoyados durante todo el movimiento.',
+      'Usa el rack con los seguros a la altura adecuada.',
+    ],
+  },
+  {
+    key: 'peso_muerto',
+    name: 'Peso muerto',
+    kind: 'free',
+    muscles: 'Glúteo mayor, isquiotibiales, erectores de la columna, trapecio, dorsales y antebrazos.',
+    tips: [
+      'La barra empieza sobre la mitad del pie, pegada a las espinillas.',
+      'Espalda neutra: nunca redondees la zona lumbar.',
+      'Empuja el suelo con las piernas y extiende la cadera al final.',
+      'Mantén la barra pegada al cuerpo en todo el recorrido.',
+      'Baja con el mismo control con el que subiste.',
+    ],
+  },
+  {
+    key: 'peso_muerto_rumano',
+    name: 'Peso muerto rumano',
+    kind: 'free',
+    muscles: 'Isquiotibiales (principal), glúteo mayor y erectores de la columna.',
+    tips: [
+      'Rodillas ligeramente flexionadas y fijas durante todo el movimiento.',
+      'Lleva la cadera hacia atrás como si cerraras una puerta con los glúteos.',
+      'Baja hasta sentir el estiramiento de los isquiotibiales, no hasta el suelo.',
+      'Mantén la espalda recta y la barra cerca de las piernas.',
+      'Sube apretando los glúteos sin hiperextender la espalda.',
+    ],
+  },
+  {
+    key: 'zancadas',
+    name: 'Zancadas con mancuernas',
+    kind: 'free',
+    muscles: 'Cuádriceps, glúteo mayor, isquiotibiales y aductores; estabilizadores de cadera.',
+    tips: [
+      'Da un paso amplio para que ambas rodillas formen ~90° abajo.',
+      'La rodilla delantera no debe irse hacia adentro.',
+      'Mantén el torso erguido y el abdomen firme.',
+      'Empuja con el talón de la pierna delantera para regresar.',
+      'Haz las mismas repeticiones con cada pierna.',
+    ],
+  },
+  {
+    key: 'hip_thrust',
+    name: 'Hip thrust con barra',
+    kind: 'free',
+    muscles: 'Glúteo mayor (principal), isquiotibiales y glúteo medio.',
+    tips: [
+      'Apoya la parte baja de los omóplatos en el borde del banco.',
+      'Usa una almohadilla en la barra para proteger la cadera.',
+      'Pies al ancho de cadera; arriba las espinillas quedan verticales.',
+      'Sube hasta alinear rodillas, cadera y hombros, y aprieta el glúteo.',
+      'Mantén la barbilla hacia el pecho para no arquear la espalda.',
+    ],
+  },
+  {
+    key: 'remo_barra',
+    name: 'Remo con barra',
+    kind: 'free',
+    muscles: 'Dorsal ancho, romboides, trapecio, deltoides posterior, bíceps y erectores.',
+    tips: [
+      'Inclina el torso a unos 45° con la espalda recta.',
+      'Jala la barra hacia el ombligo llevando los codos atrás.',
+      'Junta los omóplatos al final de cada repetición.',
+      'No uses impulso con la cadera ni el torso.',
+      'Mantén las rodillas ligeramente flexionadas.',
+    ],
+  },
+  {
+    key: 'remo_mancuerna',
+    name: 'Remo con mancuerna a una mano',
+    kind: 'free',
+    muscles: 'Dorsal ancho, romboides, trapecio medio, deltoides posterior y bíceps.',
+    tips: [
+      'Apoya rodilla y mano del mismo lado en el banco.',
+      'Espalda plana y paralela al suelo.',
+      'Jala la mancuerna hacia la cadera, no hacia el hombro.',
+      'Evita girar el torso para subir más.',
+      'Baja hasta estirar el brazo y sentir la espalda.',
+    ],
+  },
+  {
+    key: 'dominadas',
+    name: 'Dominadas',
+    kind: 'free',
+    muscles: 'Dorsal ancho (principal), redondo mayor, bíceps, romboides y trapecio inferior.',
+    tips: [
+      'Agarre un poco más ancho que los hombros, palmas al frente.',
+      'Inicia bajando los hombros antes de flexionar los codos.',
+      'Sube hasta que la barbilla pase la barra.',
+      'Baja controlado hasta extender los brazos.',
+      'Si aún no puedes, usa la máquina asistida o una banda elástica.',
+    ],
+  },
+  {
+    key: 'fondos',
+    name: 'Fondos en paralelas',
+    kind: 'free',
+    muscles: 'Tríceps, pectoral inferior y deltoides anterior.',
+    tips: [
+      'Torso erguido = más tríceps; inclinado al frente = más pecho.',
+      'Baja hasta que los codos formen ~90°.',
+      'Mantén los hombros abajo, lejos de las orejas.',
+      'No bajes de más si sientes molestia en el hombro.',
+      'Si aún no puedes con tu peso, usa la máquina asistida.',
+    ],
+  },
+  {
+    key: 'press_militar_mancuernas',
+    name: 'Press de hombro con mancuernas',
+    kind: 'free',
+    muscles: 'Deltoides anterior y medio, tríceps y trapecio superior.',
+    tips: [
+      'Siéntate en un banco con respaldo vertical.',
+      'Empieza con las mancuernas a la altura de las orejas.',
+      'Empuja hacia arriba sin chocar las mancuernas.',
+      'No arquees la espalda; mantén el abdomen firme.',
+      'Baja lento hasta la posición inicial.',
+    ],
+  },
+  {
+    key: 'elevaciones_laterales',
+    name: 'Elevaciones laterales',
+    kind: 'free',
+    muscles: 'Deltoides medio (principal); apoyo de trapecio superior y deltoides anterior.',
+    tips: [
+      'Codos ligeramente flexionados y fijos.',
+      'Sube los brazos hasta la altura de los hombros, no más.',
+      'Lleva los codos ligeramente por delante de las manos.',
+      'Usa poco peso y evita el balanceo del cuerpo.',
+      'Baja lento; la fase negativa también cuenta.',
+    ],
+  },
+  {
+    key: 'curl_mancuernas',
+    name: 'Curl de bíceps con mancuernas',
+    kind: 'free',
+    muscles: 'Bíceps braquial, braquial y braquiorradial.',
+    tips: [
+      'Codos pegados a los costados durante todo el movimiento.',
+      'Gira la palma hacia arriba (supinación) mientras subes.',
+      'No balancees el cuerpo para levantar el peso.',
+      'Aprieta el bíceps arriba y baja controlado.',
+      'Puedes alternar brazos para concentrarte en cada uno.',
+    ],
+  },
+  {
+    key: 'curl_martillo',
+    name: 'Curl martillo',
+    kind: 'free',
+    muscles: 'Braquiorradial, braquial y bíceps braquial.',
+    tips: [
+      'Agarre neutro: las palmas se miran entre sí.',
+      'Codos fijos a los costados.',
+      'Sube hasta la altura del hombro sin girar la muñeca.',
+      'Controla la bajada por 2–3 segundos.',
+      'Complementa bien al curl tradicional para brazos más gruesos.',
+    ],
+  },
+  {
+    key: 'extension_triceps',
+    name: 'Extensión de tríceps sobre la cabeza',
+    kind: 'free',
+    muscles: 'Tríceps braquial, en especial la cabeza larga.',
+    tips: [
+      'Sujeta una mancuerna con ambas manos detrás de la cabeza.',
+      'Mantén los codos apuntando al frente y cerca de la cabeza.',
+      'Extiende los brazos sin mover los hombros.',
+      'Baja lento hasta sentir el estiramiento del tríceps.',
+      'Hazlo sentado con respaldo para proteger la espalda baja.',
+    ],
+  },
+  {
+    key: 'aperturas',
+    name: 'Aperturas con mancuernas',
+    kind: 'free',
+    muscles: 'Pectoral mayor y deltoides anterior.',
+    tips: [
+      'Codos ligeramente flexionados y fijos, como abrazando un barril.',
+      'Baja hasta sentir el estiramiento del pecho, sin pasar la línea de los hombros.',
+      'Junta las mancuernas arriba apretando el pecho.',
+      'Usa menos peso que en el press; aquí importa el estiramiento.',
+      'Mantén los omóplatos juntos y apoyados en el banco.',
+    ],
+  },
+  {
+    key: 'flexiones',
+    name: 'Lagartijas (flexiones)',
+    kind: 'free',
+    muscles: 'Pectoral mayor, tríceps, deltoides anterior y abdomen (estabilizador).',
+    tips: [
+      'Manos un poco más anchas que los hombros.',
+      'El cuerpo forma una línea recta de cabeza a talones.',
+      'Baja hasta que el pecho casi toque el suelo.',
+      'Codos a ~45° del cuerpo, no completamente abiertos.',
+      'Si cuesta, apoya las rodillas o las manos en un banco.',
+    ],
+  },
+  {
+    key: 'plancha',
+    name: 'Plancha abdominal',
+    kind: 'free',
+    muscles: 'Transverso del abdomen, recto abdominal, oblicuos, glúteos y hombros (isométrico).',
+    tips: [
+      'Codos debajo de los hombros y antebrazos apoyados.',
+      'Cuerpo recto: ni la cadera arriba ni hundida.',
+      'Aprieta abdomen y glúteos durante todo el tiempo.',
+      'Respira con normalidad; no contengas el aire.',
+      'Registra los segundos sostenidos en lugar de repeticiones.',
+    ],
+  },
+  {
+    key: 'crunch',
+    name: 'Crunch abdominal',
+    kind: 'free',
+    muscles: 'Recto abdominal (principal) y oblicuos.',
+    tips: [
+      'Rodillas flexionadas y pies apoyados en el suelo.',
+      'Manos en el pecho o a los lados de la cabeza, sin jalar el cuello.',
+      'Sube despegando solo los omóplatos del suelo.',
+      'Exhala al subir y aprieta el abdomen arriba.',
+      'Baja lento sin dejar caer la cabeza.',
+    ],
+  },
+];
